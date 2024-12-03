@@ -29,7 +29,6 @@
   (loop-iter n 2))
 
 (loop 100)
-
 (test-carmichael 561)
 (test-carmichael 1105)
 (test-carmichael 1729)
