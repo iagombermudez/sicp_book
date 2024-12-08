@@ -1,8 +1,11 @@
 (define (cont-frac n d k)
-  (cond ((= k 0) (/ (n k) (d k)))
-        (else (/ ( n k)
-                 (+ (d k)
-                    (cont-frac n d (- k 1)))))))
+  (define (recur i)
+    (cond ((= i k) (/ (n i) (d i)))
+          (else (/ ( n i)
+                   (+ (d i)
+                      (recur (+ i 1)))))))
+  (recur 0))
+
 
 (cont-frac (lambda (i) 1.0)
            (lambda (i) 1.0)
