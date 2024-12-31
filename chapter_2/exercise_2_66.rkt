@@ -1,0 +1,31 @@
+(define (entry tree) (car tree))
+(define (left-branch tree) (cadr tree))
+(define (right-branch tree) (caddr tree))
+(define (make-tree entry left right)
+  (list entry left right))
+
+(define (key element)
+  (car element)) 
+
+(define (lookup given-key set-of-records)
+  (if (null? set-of-records)
+      #f
+      (let ((current-entry (entry set-of-records)))
+        (cond ((null? set-of-records) false)
+              ((= given-key (key current-entry)) current-entry)
+              ((> given-key (key current-entry))
+               (lookup given-key (right-branch set-of-records)))
+              ((< given-key (key current-entry))
+               (lookup given-key (left-branch set-of-records)))))))
+
+(define records (list (cons 2 "dos")
+                      (list (cons 1 "uno") '() '())
+                      (list (cons 3 "tres")
+                            '()
+                            (list (cons 4 "cuatro") '() '()))))
+
+(lookup 2 records)
+(lookup 1 records)
+(lookup 3 records)
+(lookup 4 records)
+(lookup -1 records)
