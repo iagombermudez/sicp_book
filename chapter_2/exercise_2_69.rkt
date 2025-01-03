@@ -37,20 +37,10 @@
   (successive-merge (make-leaf-set pairs)))
 
 (define (successive-merge leaf-set)
-  (display leaf-set)
-  (newline)
   (if (null? (cdr leaf-set)) (car leaf-set)
       (successive-merge (adjoin-set
                          (make-code-tree (car leaf-set) (cadr leaf-set))
                         (cddr leaf-set)))))
-
-
-(define (add-new-merge leaf leaf-set)
-  (cond ((null? leaf-set) (list leaf))
-        ((> (weight-leaf leaf) (weight-leaf (car leaf-set)))
-         (cons (car leaf-set) (add-new-merge leaf (cdr leaf-set))))
-        (else (cons leaf leaf-set))))
-         
 
 (define pairs (list (list 'A 8) (list 'B 3)
                     (list 'C 1) (list 'D 1)
