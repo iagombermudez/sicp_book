@@ -47,5 +47,4 @@
                     (list 'E 1) (list 'F 1)
                     (list 'G 1) (list 'H 1)))
 
-(newline)
 (display (generate-huffman-tree pairs))
